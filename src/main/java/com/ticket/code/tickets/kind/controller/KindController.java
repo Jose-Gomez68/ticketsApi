@@ -1,6 +1,5 @@
 package com.ticket.code.tickets.kind.controller;
 
-import com.ticket.code.tickets.area.model.AreaModel;
 import com.ticket.code.tickets.kind.model.KindModel;
 import com.ticket.code.tickets.kind.service.IKindService;
 import com.ticket.code.tickets.utils.modelsutils.ApiResponse;
@@ -25,7 +24,7 @@ public class KindController {
 
         List<KindModel> list = serv.allKind();
 
-        String message = list.isEmpty() ? "No se encontraron tipo o kind" : "areas encontradas.";
+        String message = list.isEmpty() ? "No se encontraron tipo o kind" : "Kind encontradas.";
         ApiResponse<List<KindModel>> respose = new ApiResponse<>(
                 true,
                 message,
@@ -37,15 +36,15 @@ public class KindController {
     }
 
     @GetMapping("/{kindID}")
-    public ResponseEntity<ApiResponse<KindModel>> getAreaByID(@PathVariable("kindID") Long kindID) {
+    public ResponseEntity<ApiResponse<KindModel>> getKindByID(@PathVariable("kindID") Long kindID) {
 
-        Optional<KindModel> area = serv.findByID(kindID);
+        Optional<KindModel> kind = serv.findByID(kindID);
 
-        if (area.isPresent()){
+        if (kind.isPresent()){
             ApiResponse<KindModel> resp = new ApiResponse<>(
                     true,
                     "Tipo o Kind encontrada",
-                    area.get()
+                    kind.get()
             );
 
             return ResponseEntity.ok(resp);
@@ -62,7 +61,7 @@ public class KindController {
     }
 
     @PostMapping("/createKind")
-    public ResponseEntity<ApiResponse<KindModel>> createArea(
+    public ResponseEntity<ApiResponse<KindModel>> createKind(
             @RequestBody KindModel kind) {
         try {
 
@@ -110,7 +109,7 @@ public class KindController {
     }
 
     @PutMapping("/UpdateKind")
-    public ResponseEntity<ApiResponse<KindModel>> updateArea(
+    public ResponseEntity<ApiResponse<KindModel>> updateKind(
             @RequestBody KindModel kind) {
 
         try {
@@ -161,13 +160,13 @@ public class KindController {
             kindToUpdate.setName(kind.getName());
 
             // 5.guardar cambios
-            KindModel updatedArea =
+            KindModel updatedKind =
                     serv.update(kindToUpdate);
 
             ApiResponse<KindModel> response = new ApiResponse<>(
                     true,
-                    "Area actualizada correctamente.",
-                    updatedArea
+                    "Kind actualizada correctamente.",
+                    updatedKind
             );
 
             return ResponseEntity.ok(response);
@@ -187,20 +186,20 @@ public class KindController {
         }
     }
 
-    @DeleteMapping("/DeleteArea/{areaID}")
-    public ResponseEntity<ApiResponse<AreaModel>> deleteArea (@PathVariable("areaID") Long areaID) {
+    @DeleteMapping("/DeletekIND/{kindID}")
+    public ResponseEntity<ApiResponse<KindModel>> deleteKind(@PathVariable("kindID") Long kindID) {
 
         try {
 
-            // 1.verificar que la area exista
-            Optional<AreaModel> existingArea =
-                    serv.findByID(areaID);
+            // 1.verificar que la Kind exista
+            Optional<KindModel> existingKind =
+                    serv.findByID(kindID);
 
-            if (existingArea.isEmpty()) {
+            if (existingKind.isEmpty()) {
 
-                ApiResponse<AreaModel> response = new ApiResponse<>(
+                ApiResponse<KindModel> response = new ApiResponse<>(
                         false,
-                        "El area con ID " + areaID + " no existe.",
+                        "El kind con ID " + kindID + " no existe.",
                         null
                 );
 
@@ -209,22 +208,22 @@ public class KindController {
                         .body(response);
             }
 
-            // 2.eliminar area
-            serv.deleteArea(areaID);
+            // 2.eliminar kind
+            serv.deleteKind(kindID);
 
-            ApiResponse<AreaModel> response = new ApiResponse<>(
+            ApiResponse<KindModel> response = new ApiResponse<>(
                     true,
-                    "Area eliminada correctamente.",
-                    existingArea.get()
+                    "Kind eliminada correctamente.",
+                    existingKind.get()
             );
 
             return ResponseEntity.ok(response);
 
         } catch (Exception e) {
 
-            ApiResponse<AreaModel> response = new ApiResponse<>(
+            ApiResponse<KindModel> response = new ApiResponse<>(
                     false,
-                    "Ocurrió un error al eliminar el area: "
+                    "Ocurrió un error al eliminar el kind: "
                             + e.getMessage(),
                     null
             );

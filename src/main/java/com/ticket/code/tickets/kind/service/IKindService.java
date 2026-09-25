@@ -1,6 +1,5 @@
 package com.ticket.code.tickets.kind.service;
 
-import com.ticket.code.tickets.area.model.AreaModel;
 import com.ticket.code.tickets.kind.model.KindModel;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public interface IKindService {
 
     KindModel update (KindModel area);
 
-    KindModel deleteArea(Long areaID);
+    KindModel deleteKind(Long areaID);
 
     Optional<KindModel> findByID(Long areaID);
 

@@ -34,7 +34,7 @@ public class KindServiceJpa implements IKindService {
     }
 
     @Override
-    public KindModel deleteArea(Long areaID) {
+    public KindModel deleteKind(Long areaID) {
         return null;
     }
 
