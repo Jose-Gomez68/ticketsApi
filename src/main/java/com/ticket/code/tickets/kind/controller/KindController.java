@@ -209,12 +209,12 @@ public class KindController {
             }
 
             // 2.eliminar kind
-            serv.deleteKind(kindID);
+            KindModel resp = serv.deleteKind(kindID);
 
             ApiResponse<KindModel> response = new ApiResponse<>(
                     true,
                     "Kind eliminada correctamente.",
-                    existingKind.get()
+                    resp
             );
 
             return ResponseEntity.ok(response);
