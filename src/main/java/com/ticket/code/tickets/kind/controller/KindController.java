@@ -186,7 +186,7 @@ public class KindController {
         }
     }
 
-    @DeleteMapping("/DeletekIND/{kindID}")
+    @DeleteMapping("/DeleteKind/{kindID}")
     public ResponseEntity<ApiResponse<KindModel>> deleteKind(@PathVariable("kindID") Long kindID) {
 
         try {
