@@ -31,7 +31,8 @@ public class AreaServiceJpa implements IAreaService {
 
         AreaEntity entity = new AreaEntity();
 
-        entity.setName(area.getName());
+        //entity.setName(area.getName());
+        entity = convertToEntity(area);
 
         AreaEntity areaResult = rep.save(entity);
 
