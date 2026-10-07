@@ -27,11 +27,9 @@ public class PriorityServiceJpa implements IPriorityService {
     }
 
     @Override
-    public PriorityModel save(PriorityModel area) {
+    public PriorityModel save(PriorityModel priority) {
         PriorityEntity entity = new PriorityEntity();
-
-        entity.setName(area.getName());
-
+        entity = convertToEntity(priority);
         PriorityEntity priorityResult = rep.save(entity);
 
         return convertToModel(priorityResult);
