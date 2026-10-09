@@ -1,10 +1,6 @@
 package com.ticket.code.tickets.project.model;
 
-import com.ticket.code.tickets.ticket.TicketEntity;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ProjectModel {
 
@@ -14,7 +10,7 @@ public class ProjectModel {
 
     private String description;
 
-    private List<TicketEntity> tickets = new ArrayList<>();
+    /*private List<TicketEntity> tickets = new ArrayList<>();*/
 
     private Boolean active = true;
 
@@ -50,13 +46,13 @@ public class ProjectModel {
         this.description = description;
     }
 
-    public List<TicketEntity> getTickets() {
+  /*  public List<TicketEntity> getTickets() {
         return tickets;
     }
 
     public void setTickets(List<TicketEntity> tickets) {
         this.tickets = tickets;
-    }
+    }*/
 
     public Boolean getActive() {
         return active;

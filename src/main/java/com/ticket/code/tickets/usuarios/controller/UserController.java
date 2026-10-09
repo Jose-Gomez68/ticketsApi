@@ -108,7 +108,7 @@ public class UserController {
 
     }
 
-    @PutMapping("/UpdateCategory")
+    @PutMapping("/UpdateUser")
     public ResponseEntity<ApiResponse<UserModel>> updateUser(
             @RequestBody UserModel user) {
 

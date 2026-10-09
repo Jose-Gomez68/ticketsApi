@@ -83,7 +83,7 @@ public class KindServiceJpa implements IKindService {
 
         model.setKindID(entity.getKindID());
         model.setName(entity.getName());
-        model.setTickets(entity.getTickets());
+        //model.setTickets(entity.getTickets());
         model.setActive(entity.getActive());
         model.setCreatedBy(entity.getCreateBy());
         model.setCreatedDate(entity.getCreateDate());
@@ -101,7 +101,7 @@ public class KindServiceJpa implements IKindService {
 
         entity.setKindID(model.getKindID());
         entity.setName(model.getName());
-        entity.setTickets(model.getTickets());
+        //entity.setTickets(model.getTickets());
         entity.setActive(model.getActive());
         entity.setCreateBy(model.getCreatedBy());
         entity.setCreateDate(model.getCreatedDate());

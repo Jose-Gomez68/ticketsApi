@@ -1,14 +1,6 @@
 package com.ticket.code.tickets.kind.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ticket.code.tickets.ticket.TicketEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class KindModel {
 
@@ -16,8 +8,8 @@ public class KindModel {
 
     private String name;
 
-    private List<TicketEntity> tickets = new ArrayList<>();
-
+    /*private List<TicketEntity> tickets = new ArrayList<>();
+*/
     private Boolean active;
 
     private String createdBy;
@@ -48,13 +40,13 @@ public class KindModel {
         this.name = name;
     }
 
-    public List<TicketEntity> getTickets() {
+   /* public List<TicketEntity> getTickets() {
         return tickets;
     }
 
     public void setTickets(List<TicketEntity> tickets) {
         this.tickets = tickets;
-    }
+    }*/
 
     public Boolean getActive() {
         return active;
