@@ -1,12 +1,8 @@
 package com.ticket.code.tickets.kind.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ticket.code.tickets.ticket.TicketEntity;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "kind")
@@ -20,9 +16,9 @@ public class KindEntity {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(mappedBy = "kind", fetch = FetchType.LAZY)
-    private List<TicketEntity> tickets = new ArrayList<>();
+    private List<TicketEntity> tickets = new ArrayList<>();*/
 
     @Column(name = "active")
     private Boolean active;
@@ -72,13 +68,13 @@ public class KindEntity {
         this.name = name;
     }
 
-    public List<TicketEntity> getTickets() {
+/*    public List<TicketEntity> getTickets() {
         return tickets;
     }
 
     public void setTickets(List<TicketEntity> tickets) {
         this.tickets = tickets;
-    }
+    }*/
 
     public Boolean getActive() {
         return active;
