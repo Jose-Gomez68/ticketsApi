@@ -9,7 +9,7 @@ import java.util.Date;
 public class PriorityEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "priorityID")
     private Long priorityID;
 

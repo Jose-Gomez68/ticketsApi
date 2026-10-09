@@ -1,6 +1,6 @@
 package com.ticket.code.tickets.status.model;
 
-import com.ticket.code.tickets.ticket.TicketEntity;
+import com.ticket.code.tickets.ticket.entity.TicketEntity;
 
 import java.util.ArrayList;
 import java.util.List;

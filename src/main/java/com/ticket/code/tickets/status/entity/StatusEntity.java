@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class StatusEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "statusID")
     private Long statusID;
 

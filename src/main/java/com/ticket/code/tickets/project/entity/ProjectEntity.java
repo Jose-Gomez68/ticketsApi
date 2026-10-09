@@ -9,7 +9,7 @@ import java.util.Date;
 public class ProjectEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projectID")
     private Long projectID;
 
