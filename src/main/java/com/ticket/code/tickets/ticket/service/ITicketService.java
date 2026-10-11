@@ -1,5 +1,6 @@
 package com.ticket.code.tickets.ticket.service;
 
+import com.ticket.code.tickets.ticket.model.TicketCreateModel;
 import com.ticket.code.tickets.ticket.model.TicketModel;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ITicketService {
 
     List<TicketModel> findByActiveFalse();
 
-    TicketModel save (TicketModel ticket);
+    TicketModel save (TicketCreateModel ticket);
 
     TicketModel update (TicketModel ticket);
 

@@ -1,12 +1,19 @@
 package com.ticket.code.tickets.ticket.model;
 
 import com.ticket.code.tickets.Priority.entity.PriorityEntity;
+import com.ticket.code.tickets.Priority.model.PriorityModel;
 import com.ticket.code.tickets.area.entity.AreaEntity;
+import com.ticket.code.tickets.area.model.AreaModel;
 import com.ticket.code.tickets.comment.entity.TicketCommentEntity;
+import com.ticket.code.tickets.comment.model.TicketCommentModel;
 import com.ticket.code.tickets.kind.entity.KindEntity;
+import com.ticket.code.tickets.kind.model.KindModel;
 import com.ticket.code.tickets.project.entity.ProjectEntity;
+import com.ticket.code.tickets.project.model.ProjectModel;
 import com.ticket.code.tickets.status.entity.StatusEntity;
+import com.ticket.code.tickets.status.model.StatusModel;
 import com.ticket.code.tickets.usuarios.entity.UserEntity;
+import com.ticket.code.tickets.usuarios.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,23 +33,23 @@ public class TicketModel {
 
     private Date updatedDate;
 
-    private KindEntity kind;// el tipo de ticket bug, sugerencia, error
+    private KindModel kind;// el tipo de ticket bug, sugerencia, error
 
     // Usuario que crea el ticket
-    private UserEntity user;
+    private UserModel user;
 
     // Usuario al que se asigna el ticket
-    private UserEntity assignedID;
+    private UserModel assignedID;
 
-    private ProjectEntity project;// se refiere a un proyecto soft o aplicacion o programa que se use
+    private ProjectModel project;// se refiere a un proyecto soft o aplicacion o programa que se use
 
-    private AreaEntity areaID;
+    private AreaModel areaID;
 
-    private PriorityEntity priorityID;
+    private PriorityModel priorityID;
 
-    private StatusEntity statusID;
+    private StatusModel statusID;
 
-    private List<TicketCommentEntity> comments = new ArrayList<>();
+    private List<TicketCommentModel> comments = new ArrayList<>();
 
     public Long getTicketID() {
         return ticketID;
@@ -92,67 +99,67 @@ public class TicketModel {
         this.updatedDate = updatedDate;
     }
 
-    public KindEntity getKind() {
+    public KindModel getKind() {
         return kind;
     }
 
-    public void setKind(KindEntity kind) {
+    public void setKind(KindModel kind) {
         this.kind = kind;
     }
 
-    public UserEntity getUser() {
+    public UserModel getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserModel user) {
         this.user = user;
     }
 
-    public UserEntity getAssignedID() {
+    public UserModel getAssignedID() {
         return assignedID;
     }
 
-    public void setAssignedID(UserEntity assignedID) {
+    public void setAssignedID(UserModel assignedID) {
         this.assignedID = assignedID;
     }
 
-    public ProjectEntity getProject() {
+    public ProjectModel getProject() {
         return project;
     }
 
-    public void setProject(ProjectEntity project) {
+    public void setProject(ProjectModel project) {
         this.project = project;
     }
 
-    public AreaEntity getAreaID() {
+    public AreaModel getAreaID() {
         return areaID;
     }
 
-    public void setAreaID(AreaEntity areaID) {
+    public void setAreaID(AreaModel areaID) {
         this.areaID = areaID;
     }
 
-    public PriorityEntity getPriorityID() {
+    public PriorityModel getPriorityID() {
         return priorityID;
     }
 
-    public void setPriorityID(PriorityEntity priorityID) {
+    public void setPriorityID(PriorityModel priorityID) {
         this.priorityID = priorityID;
     }
 
-    public StatusEntity getStatusID() {
+    public StatusModel getStatusID() {
         return statusID;
     }
 
-    public void setStatusID(StatusEntity statusID) {
+    public void setStatusID(StatusModel statusID) {
         this.statusID = statusID;
     }
 
-    public List<TicketCommentEntity> getComments() {
+    public List<TicketCommentModel> getComments() {
         return comments;
     }
 
-    public void setComments(List<TicketCommentEntity> comments) {
+    public void setComments(List<TicketCommentModel> comments) {
         this.comments = comments;
     }
 }

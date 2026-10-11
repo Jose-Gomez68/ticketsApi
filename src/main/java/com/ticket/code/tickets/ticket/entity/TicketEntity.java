@@ -28,7 +28,7 @@ public class TicketEntity {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "active")
+    @Column(name = "active")// true ticket no eliminado , false es eliminado
     private Boolean active; //si esta eliminado o no el ticket
 
     @Column(name = "createdDate", updatable = false)
@@ -38,7 +38,7 @@ public class TicketEntity {
     private Date updatedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kind_id")
+    @JoinColumn(name = "kindID")
     private KindEntity kind;// el tipo de ticket bug, sugerencia, error
 
     // Usuario que crea el ticket

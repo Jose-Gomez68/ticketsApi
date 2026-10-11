@@ -1,5 +1,6 @@
 package com.ticket.code.tickets.usuarios.service;
 
+import com.ticket.code.tickets.usuarios.entity.UserEntity;
 import com.ticket.code.tickets.usuarios.model.UserModel;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface IUserService {
 
     UserModel update (UserModel user);
 
-    void deleteUser(Long userID);
+    UserModel deleteUser(Long userID);
 
     Optional<UserModel> findByID(Long userID);
 
