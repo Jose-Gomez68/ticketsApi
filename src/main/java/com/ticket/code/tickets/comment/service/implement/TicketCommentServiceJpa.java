@@ -1,7 +1,7 @@
 package com.ticket.code.tickets.comment.service.implement;
 
-import com.ticket.code.tickets.area.entity.AreaEntity;
 import com.ticket.code.tickets.comment.entity.TicketCommentEntity;
+import com.ticket.code.tickets.comment.model.TicketCommentConverter;
 import com.ticket.code.tickets.comment.model.TicketCommentModel;
 import com.ticket.code.tickets.comment.repository.TicketCommentRepository;
 import com.ticket.code.tickets.comment.service.ITicketCommentService;
@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.comment.model.TicketCommentConverter.convertToEntity;
+import static com.ticket.code.tickets.comment.model.TicketCommentConverter.convertToModel;
 
 @Service
 @Primary
@@ -23,7 +26,7 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
     public List<TicketCommentModel> allTicketComment() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(TicketCommentConverter::convertToModel)
                 .toList();
     }
 
@@ -68,7 +71,7 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
     }
 
 
-    private TicketCommentModel convertToModel(TicketCommentEntity entity) {
+    /*private TicketCommentModel convertToModel(TicketCommentEntity entity) {
 
         TicketCommentModel model = new TicketCommentModel();
 
@@ -94,6 +97,6 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
 
         return entity;
 
-    }
+    }*/
 
 }

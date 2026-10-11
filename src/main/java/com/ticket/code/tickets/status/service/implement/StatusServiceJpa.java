@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.status.service.implement;
 
 import com.ticket.code.tickets.status.entity.StatusEntity;
+import com.ticket.code.tickets.status.model.StatusConverter;
 import com.ticket.code.tickets.status.model.StatusModel;
 import com.ticket.code.tickets.status.repository.StatusRepository;
 import com.ticket.code.tickets.status.service.IStatusService;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.status.model.StatusConverter.convertToEntity;
+import static com.ticket.code.tickets.status.model.StatusConverter.convertToModel;
 
 @Service
 @Primary
@@ -22,7 +26,7 @@ public class StatusServiceJpa implements IStatusService {
     public List<StatusModel> allStatus() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(StatusConverter::convertToModel)
                 .toList();
     }
 
@@ -83,7 +87,7 @@ public class StatusServiceJpa implements IStatusService {
         return Optional.of(convertToModel(entity));
     }
 
-    private StatusModel convertToModel(StatusEntity entity) {
+    /*private StatusModel convertToModel(StatusEntity entity) {
 
         StatusModel model = new StatusModel();
 
@@ -103,6 +107,6 @@ public class StatusServiceJpa implements IStatusService {
 
         return entity;
 
-    }
+    }*/
 
 }

@@ -2,6 +2,7 @@ package com.ticket.code.tickets.usuarios.service.implement;
 
 import com.ticket.code.tickets.area.entity.AreaEntity;
 import com.ticket.code.tickets.usuarios.entity.UserEntity;
+import com.ticket.code.tickets.usuarios.model.UserConverter;
 import com.ticket.code.tickets.usuarios.model.UserModel;
 import com.ticket.code.tickets.usuarios.repository.UserRepository;
 import com.ticket.code.tickets.usuarios.service.IUserService;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.usuarios.model.UserConverter.convertToEntity;
+import static com.ticket.code.tickets.usuarios.model.UserConverter.convertToModel;
 
 @Service
 @Primary
@@ -23,7 +27,7 @@ public class UserServiceJpa implements IUserService {
     public List<UserModel> allUsers() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(UserConverter::convertToModel)
                 .toList();
     }
 
@@ -79,7 +83,7 @@ public class UserServiceJpa implements IUserService {
 
     }
 
-    private UserModel convertToModel(UserEntity entity) {
+    /*private UserModel convertToModel(UserEntity entity) {
 
         UserModel model = new UserModel();
 
@@ -124,6 +128,6 @@ public class UserServiceJpa implements IUserService {
         entity.setDeletedDate(model.getDeletedDate());
 
         return entity;
-    }
+    }*/
 
 }

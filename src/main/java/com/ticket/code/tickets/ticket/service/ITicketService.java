@@ -14,7 +14,7 @@ public interface ITicketService {
 
     TicketModel save (TicketCreateModel ticket);
 
-    TicketModel update (TicketModel ticket);
+    TicketModel update (TicketCreateModel ticket);
 
     TicketModel deleteTicket(Long ticketID);
 

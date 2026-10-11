@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.kind.service.Implement;
 
 import com.ticket.code.tickets.kind.entity.KindEntity;
+import com.ticket.code.tickets.kind.model.KindConverter;
 import com.ticket.code.tickets.kind.model.KindModel;
 import com.ticket.code.tickets.kind.repository.KindRepository;
 import com.ticket.code.tickets.kind.service.IKindService;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.ticket.code.tickets.kind.model.KindConverter.convertToEntity;
+import static com.ticket.code.tickets.kind.model.KindConverter.convertToModel;
+
 @Service
 @Primary
 public class KindServiceJpa implements IKindService {
@@ -20,7 +24,10 @@ public class KindServiceJpa implements IKindService {
 
     @Override
     public List<KindModel> allKind() {
-        return List.of();
+        return rep.findAll()
+                .stream()
+                .map(KindConverter::convertToModel)
+                .toList();
     }
 
     @Override
@@ -77,7 +84,7 @@ public class KindServiceJpa implements IKindService {
 
     }
 
-    private KindModel convertToModel(KindEntity entity) {
+    /*private KindModel convertToModel(KindEntity entity) {
 
         KindModel model = new KindModel();
 
@@ -111,6 +118,6 @@ public class KindServiceJpa implements IKindService {
         entity.setDeletedDate(model.getDeletedDate());
 
         return entity;
-    }
+    }*/
 
 }

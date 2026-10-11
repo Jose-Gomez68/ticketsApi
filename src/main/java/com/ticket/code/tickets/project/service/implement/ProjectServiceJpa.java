@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.project.service.implement;
 
 import com.ticket.code.tickets.project.entity.ProjectEntity;
+import com.ticket.code.tickets.project.model.ProjectConverter;
 import com.ticket.code.tickets.project.model.ProjectModel;
 import com.ticket.code.tickets.project.repository.ProjectRepository;
 import com.ticket.code.tickets.project.service.IProjectService;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.project.model.ProjectConverter.convertToEntity;
+import static com.ticket.code.tickets.project.model.ProjectConverter.convertToModel;
 
 @Service
 @Primary
@@ -22,7 +26,7 @@ public class ProjectServiceJpa implements IProjectService {
     public List<ProjectModel> allProject() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(ProjectConverter::convertToModel)
                 .toList();
     }
 
@@ -81,7 +85,7 @@ public class ProjectServiceJpa implements IProjectService {
         return Optional.of(convertToModel(entity));
     }
 
-    private ProjectModel convertToModel(ProjectEntity entity) {
+   /* private ProjectModel convertToModel(ProjectEntity entity) {
 
         ProjectModel model = new ProjectModel();
 
@@ -115,6 +119,6 @@ public class ProjectServiceJpa implements IProjectService {
 
         return entity;
 
-    }
+    }*/
 
 }

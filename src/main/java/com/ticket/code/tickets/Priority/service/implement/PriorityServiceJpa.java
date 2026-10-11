@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.Priority.service.implement;
 
 import com.ticket.code.tickets.Priority.entity.PriorityEntity;
+import com.ticket.code.tickets.Priority.model.PriorityConverter;
 import com.ticket.code.tickets.Priority.model.PriorityModel;
 import com.ticket.code.tickets.Priority.repository.PriorityRepository;
 import com.ticket.code.tickets.Priority.service.IPriorityService;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.Priority.model.PriorityConverter.convertToEntity;
+import static com.ticket.code.tickets.Priority.model.PriorityConverter.convertToModel;
 
 @Service
 @Primary
@@ -22,7 +26,7 @@ public class PriorityServiceJpa implements IPriorityService {
     public List<PriorityModel> allPriority() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(PriorityConverter::convertToModel)
                 .toList();
     }
 
@@ -75,7 +79,7 @@ public class PriorityServiceJpa implements IPriorityService {
         return Optional.of(convertToModel(entity));
     }
 
-    private PriorityModel convertToModel(PriorityEntity entity) {
+    /*private PriorityModel convertToModel(PriorityEntity entity) {
 
         PriorityModel model = new PriorityModel();
 
@@ -105,6 +109,6 @@ public class PriorityServiceJpa implements IPriorityService {
 
         return entity;
 
-    }
+    }*/
 
 }

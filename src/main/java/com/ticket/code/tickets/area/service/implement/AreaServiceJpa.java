@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.area.service.implement;
 
 import com.ticket.code.tickets.area.entity.AreaEntity;
+import com.ticket.code.tickets.area.model.AreaConverter;
 import com.ticket.code.tickets.area.model.AreaModel;
 import com.ticket.code.tickets.area.repository.AreaRepository;
 import com.ticket.code.tickets.area.service.IAreaService;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.ticket.code.tickets.area.model.AreaConverter.convertToEntity;
+import static com.ticket.code.tickets.area.model.AreaConverter.convertToModel;
 
 @Service
 @Primary
@@ -22,7 +26,7 @@ public class AreaServiceJpa implements IAreaService {
     public List<AreaModel> allArea() {
         return rep.findAll()
                 .stream()
-                .map(this::convertToModel)
+                .map(AreaConverter::convertToModel)
                 .toList();
     }
 
@@ -82,7 +86,7 @@ public class AreaServiceJpa implements IAreaService {
         return Optional.of(convertToModel(entity));
     }
 
-    private AreaModel convertToModel(AreaEntity entity) {
+    /*private AreaModel convertToModel(AreaEntity entity) {
 
         AreaModel model = new AreaModel();
 
@@ -104,6 +108,6 @@ public class AreaServiceJpa implements IAreaService {
 
         return entity;
 
-    }
+    }*/
 
 }
