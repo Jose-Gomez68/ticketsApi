@@ -17,5 +17,7 @@ public interface ITicketCommentService {
 
     Optional<TicketCommentModel> findByID(Long ticketCommentID);
 
+    List<TicketCommentModel> findByTicketID(Long ticketID);
+
 
 }

@@ -70,6 +70,14 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
         return Optional.of(convertToModel(entity));
     }
 
+    @Override
+    public List<TicketCommentModel> findByTicketID(Long ticketID) {
+        return rep.findAll()
+                .stream()
+                .map(TicketCommentConverter::convertToModel)
+                .toList();
+    }
+
 
     /*private TicketCommentModel convertToModel(TicketCommentEntity entity) {
 
