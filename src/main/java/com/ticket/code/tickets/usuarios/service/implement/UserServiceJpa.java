@@ -1,5 +1,6 @@
 package com.ticket.code.tickets.usuarios.service.implement;
 
+import com.ticket.code.tickets.area.entity.AreaEntity;
 import com.ticket.code.tickets.usuarios.entity.UserEntity;
 import com.ticket.code.tickets.usuarios.model.UserModel;
 import com.ticket.code.tickets.usuarios.repository.UserRepository;
@@ -44,8 +45,14 @@ public class UserServiceJpa implements IUserService {
     }
 
     @Override
-    public void deleteUser(Long userID) {
-        rep.deleteById(userID);
+    public UserModel deleteUser(Long userID) {
+        UserEntity user = rep.findByUserID(userID);
+
+        user.setActive(true);
+
+        UserEntity result = rep.save(user);
+
+        return convertToModel(result);
     }
 
     @Override

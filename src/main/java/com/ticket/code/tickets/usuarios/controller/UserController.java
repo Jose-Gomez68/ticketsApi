@@ -1,5 +1,4 @@
 package com.ticket.code.tickets.usuarios.controller;
-
 import com.ticket.code.tickets.usuarios.model.UserModel;
 import com.ticket.code.tickets.usuarios.service.IUserService;
 import com.ticket.code.tickets.utils.modelsutils.ApiResponse;
@@ -114,7 +113,7 @@ public class UserController {
 
         try {
 
-            // 1.verificar que la categoría exista
+            // 1.verificar que la user exista
             Optional<UserModel> existingUser =
                     userServ.findByID(user.getUserID());
 
@@ -143,7 +142,7 @@ public class UserController {
 
                 ApiResponse<UserModel> response = new ApiResponse<>(
                         false,
-                        "Ya existe una categoría con el nombre: "
+                        "Ya existe una user con el nombre: "
                                 + user.getName(),
                         null
                 );
@@ -154,12 +153,12 @@ public class UserController {
             }
 
             // 3.obtener la categoría existente
-            UserModel userToUpdate = existingUser.get();
+            UserModel userToUpdate = user;
 
             // 4.actualizar los campos
-            userToUpdate.setName(user.getName());//todo AGREGAR TODOS LOS CAMPOS
+            /*userToUpdate.setName(user.getName());//todo AGREGAR TODOS LOS CAMPOS
             userToUpdate.setApPaterno(user.getApPaterno());
-            userToUpdate.setApMaterno(user.getApMaterno());
+            userToUpdate.setApMaterno(user.getApMaterno());*/
 
             // 5.guardar cambios
             UserModel updatedUser =
@@ -186,6 +185,55 @@ public class UserController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(response);
         }
+    }
+
+    @DeleteMapping("/DeleteUser/{userID}")
+    public ResponseEntity<ApiResponse<UserModel>> deleteUser (@PathVariable("userID") Long userID) {
+
+        try {
+
+            // 1.verificar que la user exista
+            Optional<UserModel> existingUser =
+                    userServ.findByID(userID);
+
+            if (existingUser.isEmpty()) {
+
+                ApiResponse<UserModel> response = new ApiResponse<>(
+                        false,
+                        "El user con ID " + userID + " no existe.",
+                        null
+                );
+
+                return ResponseEntity
+                        .status(HttpStatus.NOT_FOUND)
+                        .body(response);
+            }
+
+            // 2.eliminar user
+            userServ.deleteUser(userID);
+
+            ApiResponse<UserModel> response = new ApiResponse<>(
+                    true,
+                    "User eliminada correctamente.",
+                    existingUser.get()
+            );
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+
+            ApiResponse<UserModel> response = new ApiResponse<>(
+                    false,
+                    "Ocurrió un error al eliminar el user: "
+                            + e.getMessage(),
+                    null
+            );
+
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(response);
+        }
+
     }
 
 }
