@@ -42,9 +42,9 @@ public class TicketController {
     }
 
     @GetMapping("/getAllTicketActive")
-    public ResponseEntity<ApiResponse<List<TicketModel>>> getAllTicketActiveFalse() {//todos los tickets que no estan eliminados
+    public ResponseEntity<ApiResponse<List<TicketModel>>> getAllTicketActiveTrue() {//todos los tickets que no estan eliminados
 
-        List<TicketModel> list = serv.findByActiveFalse();
+        List<TicketModel> list = serv.findByActiveTrue();
 
         String message = list.isEmpty() ? "No se encontraron tickets" : "tickets encontrados.";
         ApiResponse<List<TicketModel>> respose = new ApiResponse<>(

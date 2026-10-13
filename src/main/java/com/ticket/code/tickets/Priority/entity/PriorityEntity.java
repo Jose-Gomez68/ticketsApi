@@ -17,7 +17,7 @@ public class PriorityEntity {
     private String name;
 
     @Column(name = "active")
-    private Boolean active = true;
+    private Boolean active;
 
     @Column(name = "createdBy")
     private String createdBy;
@@ -34,6 +34,8 @@ public class PriorityEntity {
     @PrePersist
     protected void onCreate() {
         createdDate = new Date();
+        //esta vigente, no eliminado
+        active = true;
     }
 
     @PreUpdate

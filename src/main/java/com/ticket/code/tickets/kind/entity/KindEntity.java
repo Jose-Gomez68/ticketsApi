@@ -44,6 +44,7 @@ public class KindEntity {
     @PrePersist
     protected void onCreate() {
         createdDate = new Date();
+        //esta vigente, no eliminado
         active = true;
     }
 

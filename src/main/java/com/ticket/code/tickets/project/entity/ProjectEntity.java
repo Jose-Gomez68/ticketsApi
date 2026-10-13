@@ -24,7 +24,7 @@ public class ProjectEntity {
     private List<TicketEntity> tickets = new ArrayList<>();*/
 
     @Column(name = "active")
-    private Boolean active = true;
+    private Boolean active;
 
     @Column(name = "createdBy")
     private String createdBy;
@@ -41,6 +41,8 @@ public class ProjectEntity {
     @PrePersist
     protected void onCreate() {
         createdDate = new Date();
+        //esta vigente, no eliminado
+        active = true;
     }
 
     @PreUpdate

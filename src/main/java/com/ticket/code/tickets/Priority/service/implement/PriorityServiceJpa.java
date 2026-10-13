@@ -50,7 +50,7 @@ public class PriorityServiceJpa implements IPriorityService {
     public PriorityModel deletePriority(Long priorityID) {
         PriorityEntity priority = rep.findByPriorityID(priorityID);
 
-        priority.setActive(true);
+        priority.setActive(false);//false es eliminado
 
         PriorityEntity result = rep.save(priority);
 

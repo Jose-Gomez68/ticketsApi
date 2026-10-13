@@ -52,7 +52,7 @@ public class UserServiceJpa implements IUserService {
     public UserModel deleteUser(Long userID) {
         UserEntity user = rep.findByUserID(userID);
 
-        user.setActive(true);
+        user.setActive(false);//false es eliminado
 
         UserEntity result = rep.save(user);
 

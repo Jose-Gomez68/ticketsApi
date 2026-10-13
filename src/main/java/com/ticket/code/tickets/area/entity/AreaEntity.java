@@ -64,7 +64,8 @@ public class AreaEntity {
 
     @PrePersist
     protected void onCreate() {
-        active = false;
+        //esta vigente, no eliminado
+        active = true;
     }
 
     public String getCreateBy() {

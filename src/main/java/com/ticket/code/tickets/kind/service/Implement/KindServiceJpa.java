@@ -53,7 +53,7 @@ public class KindServiceJpa implements IKindService {
     public KindModel deleteKind(Long kindID) {
         KindEntity kind = rep.findByKindID(kindID);
 
-        kind.setActive(true);
+        kind.setActive(false);//false es eliminado
 
         KindEntity result = rep.save(kind);
 

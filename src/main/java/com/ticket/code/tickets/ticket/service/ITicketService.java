@@ -10,7 +10,7 @@ public interface ITicketService {
 
     List<TicketModel> allTicket();
 
-    List<TicketModel> findByActiveFalse();
+    List<TicketModel> findByActiveTrue();
 
     TicketModel save (TicketCreateModel ticket);
 

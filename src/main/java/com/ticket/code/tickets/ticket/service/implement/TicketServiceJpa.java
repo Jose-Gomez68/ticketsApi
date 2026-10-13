@@ -55,7 +55,7 @@ public class TicketServiceJpa implements ITicketService {
     }
 
     @Override
-    public List<TicketModel> findByActiveFalse() {
+    public List<TicketModel> findByActiveTrue() {
         return rep.findByActiveFalse()
                 .stream()
                 .map(TicketConverter::convertToModel)
@@ -83,7 +83,7 @@ public class TicketServiceJpa implements ITicketService {
     public TicketModel deleteTicket(Long ticketID) {
         TicketEntity ticket = rep.findByTicketID(ticketID);
 
-        ticket.setActive(true);
+        ticket.setActive(false);//false es eliminado
 
         TicketEntity result = rep.save(ticket);
 

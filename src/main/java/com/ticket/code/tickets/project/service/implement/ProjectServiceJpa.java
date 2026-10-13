@@ -53,7 +53,7 @@ public class ProjectServiceJpa implements IProjectService {
     public ProjectModel deleteProject(Long projectID) {
         ProjectEntity project = rep.findByProjectID(projectID);
 
-        project.setActive(true);
+        project.setActive(false);//false es eliminado
 
         ProjectEntity result = rep.save(project);
 

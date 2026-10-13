@@ -55,7 +55,7 @@ public class AreaServiceJpa implements IAreaService {
     public AreaModel deleteArea(Long areaID) {
         AreaEntity area = rep.findByAreaID(areaID);
 
-        area.setActive(true);
+        area.setActive(false);//false es eliminado
 
         AreaEntity result = rep.save(area);
 
