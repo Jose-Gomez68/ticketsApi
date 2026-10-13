@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface TicketRepository extends JpaRepository<TicketEntity, Long> {
 
-    TicketEntity findByTicektID(Long ticketID);
+    TicketEntity findByTicketID(Long ticketID);
 
     List<TicketEntity> findByActiveFalse();
 
-    TicketEntity findByNameIgnoreCase(String name);
+    TicketEntity findByTitleIgnoreCase(String name);
 
     List<TicketEntity> findByAreaID_AreaIDAndActiveFalseOrderByCreatedDateDesc(Long areaID);//ticket no eliminados recientes
 

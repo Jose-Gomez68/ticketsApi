@@ -20,6 +20,6 @@ public interface ITicketService {
 
     Optional<TicketModel> findByID(Long ticketID);
 
-    Optional<TicketModel> findByNameIgnoreCase(String name);
+    Optional<TicketModel> findByTitleIgnoreCase(String name);
 
 }

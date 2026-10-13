@@ -1,5 +1,6 @@
 package com.ticket.code.tickets.comment.entity;
 
+import com.ticket.code.tickets.ticket.entity.TicketEntity;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -17,8 +18,9 @@ public class TicketCommentEntity {
     private String message;
 
     // Ticket al que pertenece el comentario
-    @Column(name = "ticketID")
-    private Long ticket;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ticketID", nullable = false)
+    private TicketEntity ticket;
 
     // Usuario que escribió el comentario
     @Column(name = "userID")
@@ -66,11 +68,11 @@ public class TicketCommentEntity {
         this.message = message;
     }
 
-    public Long getTicket() {
+    public TicketEntity getTicket() {
         return ticket;
     }
 
-    public void setTicket(Long ticket) {
+    public void setTicket(TicketEntity ticket) {
         this.ticket = ticket;
     }
 

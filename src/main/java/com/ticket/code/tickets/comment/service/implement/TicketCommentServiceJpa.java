@@ -5,6 +5,7 @@ import com.ticket.code.tickets.comment.model.TicketCommentConverter;
 import com.ticket.code.tickets.comment.model.TicketCommentModel;
 import com.ticket.code.tickets.comment.repository.TicketCommentRepository;
 import com.ticket.code.tickets.comment.service.ITicketCommentService;
+import com.ticket.code.tickets.ticket.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-import static com.ticket.code.tickets.comment.model.TicketCommentConverter.convertToEntity;
 import static com.ticket.code.tickets.comment.model.TicketCommentConverter.convertToModel;
 
 @Service
@@ -21,6 +21,9 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
 
     @Autowired
     private TicketCommentRepository rep;
+
+    @Autowired
+    private TicketRepository ticket;
 
     @Override
     public List<TicketCommentModel> allTicketComment() {
@@ -34,7 +37,7 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
     public TicketCommentModel save(TicketCommentModel ticketComment) {
         TicketCommentEntity entity = new TicketCommentEntity();
 
-        entity = convertToEntity(ticketComment);
+        entity = convertToEntity2(ticketComment);
 
         TicketCommentEntity commentResult = rep.save(entity);
 
@@ -43,14 +46,14 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
 
     @Override
     public TicketCommentModel update(TicketCommentModel ticketComment) {
-        TicketCommentEntity commentResult = rep.save(convertToEntity(ticketComment));
+        TicketCommentEntity commentResult = rep.save(convertToEntity2(ticketComment));
 
         return convertToModel(commentResult);
     }
 
     @Override
     public TicketCommentModel deleteTicket(Long ticketCommentID) {
-        TicketCommentEntity comment = rep.findByTicketCommentID(ticketCommentID);
+        TicketCommentEntity comment = rep.findByCommentID(ticketCommentID);
 
         if (comment != null)
             rep.deleteById(ticketCommentID);
@@ -61,7 +64,7 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
 
     @Override
     public Optional<TicketCommentModel> findByID(Long ticketCommentID) {
-        TicketCommentEntity entity = rep.findByTicketCommentID(ticketCommentID);
+        TicketCommentEntity entity = rep.findByCommentID(ticketCommentID);
 
         if (entity == null) {
             return Optional.empty();
@@ -72,10 +75,26 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
 
     @Override
     public List<TicketCommentModel> findByTicketID(Long ticketID) {
-        return rep.findAll()
+        return rep.findByTicket_TicketID(ticketID)
                 .stream()
                 .map(TicketCommentConverter::convertToModel)
                 .toList();
+    }
+
+    private TicketCommentEntity convertToEntity2(TicketCommentModel model) {
+
+        TicketCommentEntity entity = new TicketCommentEntity();
+
+        entity.setCommentID(model.getCommentID());
+        entity.setMessage(model.getMessage());
+        entity.setTicket( ticket.findById(model.getTicket())
+                .orElseThrow(() ->
+                        new RuntimeException("Ticket no encontrado")));
+        entity.setCreatedDate(model.getCreatedDate());
+        entity.setUpdatedDate(model.getUpdatedDate());
+
+        return entity;
+
     }
 
 

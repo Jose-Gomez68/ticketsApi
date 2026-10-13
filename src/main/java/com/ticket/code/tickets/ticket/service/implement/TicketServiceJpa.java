@@ -81,7 +81,7 @@ public class TicketServiceJpa implements ITicketService {
 
     @Override
     public TicketModel deleteTicket(Long ticketID) {
-        TicketEntity ticket = rep.findByTicektID(ticketID);
+        TicketEntity ticket = rep.findByTicketID(ticketID);
 
         ticket.setActive(true);
 
@@ -92,7 +92,7 @@ public class TicketServiceJpa implements ITicketService {
 
     @Override
     public Optional<TicketModel> findByID(Long ticketID) {
-        TicketEntity entity = rep.findByTicektID(ticketID);
+        TicketEntity entity = rep.findByTicketID(ticketID);
 
         if (entity == null) {
             return Optional.empty();
@@ -102,8 +102,8 @@ public class TicketServiceJpa implements ITicketService {
     }
 
     @Override
-    public Optional<TicketModel> findByNameIgnoreCase(String name) {
-        TicketEntity entity = rep.findByNameIgnoreCase(name);
+    public Optional<TicketModel> findByTitleIgnoreCase(String name) {
+        TicketEntity entity = rep.findByTitleIgnoreCase(name);
 
         if (entity == null) {
             return Optional.empty();
