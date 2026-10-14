@@ -61,7 +61,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/CreateUser")
+    @PostMapping("/createUser")
     public ResponseEntity<ApiResponse<UserModel>> createUser(@RequestBody UserModel user) {
 
         try {

@@ -157,6 +157,8 @@ public class ProjectController {
 
             // 4.actualizar los campos
             projectToUpdate.setName(project.getName());
+            projectToUpdate.setDescription(project.getDescription());
+            //faltaria agregar quien actualiza osea que usuario
 
             // 5.guardar cambios
             ProjectModel updatedProject =

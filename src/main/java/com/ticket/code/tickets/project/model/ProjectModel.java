@@ -10,7 +10,6 @@ public class ProjectModel {
 
     private String description;
 
-    /*private List<TicketEntity> tickets = new ArrayList<>();*/
 
     private Boolean active = true;
 
@@ -46,13 +45,7 @@ public class ProjectModel {
         this.description = description;
     }
 
-  /*  public List<TicketEntity> getTickets() {
-        return tickets;
-    }
 
-    public void setTickets(List<TicketEntity> tickets) {
-        this.tickets = tickets;
-    }*/
 
     public Boolean getActive() {
         return active;
