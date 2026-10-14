@@ -16,6 +16,9 @@ public class AreaEntity {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "descrip")
+    private String descrip;
+
     @Column(name = "active")
     private Boolean active;
 
@@ -53,6 +56,21 @@ public class AreaEntity {
         this.name = name;
     }
 
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
     public Boolean getActive() {
         return active;
@@ -64,6 +82,7 @@ public class AreaEntity {
 
     @PrePersist
     protected void onCreate() {
+        createdDate = new Date();
         //esta vigente, no eliminado
         active = true;
     }

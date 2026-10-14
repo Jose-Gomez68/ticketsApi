@@ -14,7 +14,12 @@ public class AreaConverter {
 
         model.setAreaID(entity.getAreaID());
         model.setName(entity.getName());
+        model.setDescrip(entity.getDescrip());
         model.setActive(entity.getActive());
+        model.setCreatedDate(entity.getCreatedDate());
+        model.setCreateBy(entity.getCreateBy());
+        model.setUpdatedDate(entity.getUpdatedDate());
+        model.setUpdatedBy(entity.getUpdatedBy());
 
         return model;
 
@@ -26,7 +31,13 @@ public class AreaConverter {
 
         entity.setAreaID(model.getAreaID());
         entity.setName(model.getName());
+        entity.setDescrip(model.getDescrip());
         entity.setActive(model.getActive());
+        entity.setCreatedDate(model.getCreatedDate());
+        entity.setCreateBy(model.getCreateBy());
+        entity.setUpdatedDate(model.getUpdatedDate());
+        entity.setUpdatedBy(model.getUpdatedBy());
+
 
         return entity;
 

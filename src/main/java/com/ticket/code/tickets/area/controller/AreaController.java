@@ -154,14 +154,14 @@ public class AreaController {
             }
 
             // 3.obtener la area existente
-            AreaModel areaToUpdate = existingArea.get();
+            /*AreaModel areaToUpdate = existingArea.get();
 
             // 4.actualizar los campos
-            areaToUpdate.setName(area.getName());
+            areaToUpdate.setName(area.getName());*/
 
             // 5.guardar cambios
             AreaModel updatedArea =
-                    serv.update(areaToUpdate);
+                    serv.update(area);
 
             ApiResponse<AreaModel> response = new ApiResponse<>(
                     true,
