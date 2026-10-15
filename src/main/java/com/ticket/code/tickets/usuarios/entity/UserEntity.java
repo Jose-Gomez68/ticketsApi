@@ -1,5 +1,7 @@
 package com.ticket.code.tickets.usuarios.entity;
 
+import com.ticket.code.tickets.area.entity.AreaEntity;
+import com.ticket.code.tickets.usuarios.model.UserRole;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -9,7 +11,7 @@ import java.util.Date;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// faltaria modificar usuarios para que recibe userType y el area a la que es asignado
     @Column(name = "userID")
     private Long userID;
 
@@ -33,6 +35,14 @@ public class UserEntity {
 
     @Column(name = "active")
     private Boolean active;
+
+    @Enumerated(EnumType.STRING) // guarda "ADMIN" en vez de 0,1,2...
+    @Column(nullable = false)
+    private UserRole role;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "areaID") // nullable, porque el ADMIN no tiene
+    private AreaEntity area;
 
     @Column(name = "createdBy")
     private String createdBy;
@@ -162,6 +172,38 @@ public class UserEntity {
 
     public void setDeletedDate(Date deletedDate) {
         this.deletedDate = deletedDate;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public AreaEntity getArea() {
+        return area;
+    }
+
+    public void setArea(AreaEntity area) {
+        this.area = area;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     @PrePersist

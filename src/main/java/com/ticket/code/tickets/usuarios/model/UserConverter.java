@@ -23,6 +23,12 @@ public class UserConverter {
         // model.setPassword(entity.getPassword());
 
         model.setActive(entity.getActive());
+        model.setRole(entity.getRole());                    // NUEVO
+
+        if (entity.getArea() != null) {                     // NUEVO
+            model.setAreaID(entity.getArea().getAreaID());
+            model.setAreaName(entity.getArea().getName());
+        }
         model.setCreateBy(entity.getCreateBy());
         model.setCreateDate(entity.getCreateDate());
         model.setUpdatedBy(entity.getUpdatedBy());
@@ -45,6 +51,7 @@ public class UserConverter {
         entity.setEmail(model.getEmail());
         entity.setPassword(model.getPassword());
         entity.setActive(model.getActive());
+        entity.setRole(model.getRole());
         entity.setCreateBy(model.getCreateBy());
         entity.setCreateDate(model.getCreateDate());
         entity.setUpdatedBy(model.getUpdatedBy());

@@ -22,6 +22,12 @@ public class UserModel {
 
     private Boolean active;
 
+    private UserRole role;
+
+    private Long areaID;
+
+    private String areaName;
+
     private String createBy;
 
     private Date createDate;
@@ -144,5 +150,29 @@ public class UserModel {
 
     public void setDeletedDate(Date deletedDate) {
         this.deletedDate = deletedDate;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
+    public Long getAreaID() {
+        return areaID;
+    }
+
+    public void setAreaID(Long areaID) {
+        this.areaID = areaID;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 }
