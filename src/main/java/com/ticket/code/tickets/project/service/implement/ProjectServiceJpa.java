@@ -7,6 +7,10 @@ import com.ticket.code.tickets.project.repository.ProjectRepository;
 import com.ticket.code.tickets.project.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +32,18 @@ public class ProjectServiceJpa implements IProjectService {
                 .stream()
                 .map(ProjectConverter::convertToModel)
                 .toList();
+    }
+
+    @Override
+    public Page<ProjectModel> allProjectPage(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by(Sort.Direction.DESC, "projectID")
+        );
+
+        return rep.findAll(pageable)
+                .map(ProjectConverter::convertToModel);
     }
 
     @Override

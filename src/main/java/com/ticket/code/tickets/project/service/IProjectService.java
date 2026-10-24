@@ -1,6 +1,7 @@
 package com.ticket.code.tickets.project.service;
 
 import com.ticket.code.tickets.project.model.ProjectModel;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,8 @@ import java.util.Optional;
 public interface IProjectService {
 
     List<ProjectModel> allProject();
+
+    Page<ProjectModel> allProjectPage(Integer page, Integer size);
 
     ProjectModel save (ProjectModel project);
 

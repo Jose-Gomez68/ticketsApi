@@ -3,7 +3,9 @@ package com.ticket.code.tickets.project.controller;
 import com.ticket.code.tickets.project.model.ProjectModel;
 import com.ticket.code.tickets.project.service.IProjectService;
 import com.ticket.code.tickets.utils.modelsutils.ApiResponse;
+import com.ticket.code.tickets.utils.modelsutils.PaginationModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +33,44 @@ public class ProjectController {
         );
 
         return new ResponseEntity<>(respose, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/getAllProjectPage")
+    public ResponseEntity<ApiResponse<PaginationModel<List<ProjectModel>>>> getAllProjectPage(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size
+    ) {
+
+        if (page < 0 || size < 1 || size > 100) {
+            ApiResponse<PaginationModel<List<ProjectModel>>> response =
+                    new ApiResponse<>(
+                            false,
+                            "Los parámetros de paginación no son válidos",
+                            null
+                    );
+
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        Page<ProjectModel> result = serv.allProjectPage(page, size);
+
+        PaginationModel<List<ProjectModel>> pagination =
+                new PaginationModel<>(
+                        result.getTotalElements(),
+                        result.getNumber(),
+                        result.getSize(),
+                        result.getContent()
+                );
+
+        ApiResponse<PaginationModel<List<ProjectModel>>> response =
+                new ApiResponse<>(
+                        true,
+                        "Proyectos encontrados correctamente",
+                        pagination
+                );
+
+        return ResponseEntity.ok(response);
 
     }
 
