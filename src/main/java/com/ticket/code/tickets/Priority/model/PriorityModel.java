@@ -9,6 +9,10 @@ public class PriorityModel {
 
     private String name;
 
+    private String backgroundColor;
+
+    private String dotColor;
+
     private Boolean active;
 
     private String createdBy;
@@ -33,6 +37,22 @@ public class PriorityModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getDotColor() {
+        return dotColor;
+    }
+
+    public void setDotColor(String dotColor) {
+        this.dotColor = dotColor;
     }
 
     public Boolean getActive() {

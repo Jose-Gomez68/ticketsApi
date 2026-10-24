@@ -14,6 +14,8 @@ public class PriorityConverter {
 
         model.setPriorityID(entity.getPriorityID());
         model.setName(entity.getName());
+        model.setBackgroundColor(entity.getBackgroundColor());
+        model.setDotColor(entity.getDotColor());
         model.setActive(entity.getActive());
         model.setCreatedBy(entity.getCreatedBy());
         model.setCreatedDate(entity.getCreatedDate());
@@ -30,6 +32,8 @@ public class PriorityConverter {
 
         entity.setPriorityID(model.getPriorityID());
         entity.setName(model.getName());
+        entity.setBackgroundColor(model.getBackgroundColor());
+        entity.setDotColor(model.getDotColor());
         entity.setActive(model.getActive());
         entity.setCreatedBy(model.getCreatedBy());
         entity.setCreatedDate(model.getCreatedDate());

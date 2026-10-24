@@ -16,6 +16,12 @@ public class PriorityEntity {
     @Column(name = "name", length = 50)
     private String name;
 
+    @Column(name = "backgroundColor", length = 20)
+    private String backgroundColor;
+
+    @Column(name = "dotColor", length = 20)
+    private String dotColor;
+
     @Column(name = "active")
     private Boolean active;
 
@@ -57,6 +63,22 @@ public class PriorityEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getDotColor() {
+        return dotColor;
+    }
+
+    public void setDotColor(String dotColor) {
+        this.dotColor = dotColor;
     }
 
     public Boolean getActive() {
