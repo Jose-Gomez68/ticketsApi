@@ -13,6 +13,9 @@ public class StatusConverter {
 
         model.setStatusID(entity.getStatusID());
         model.setName(entity.getName());
+        model.setDescrip(entity.getDescrip());
+        model.setBackgroundColor(entity.getBackgroundColor());
+        model.setDotColor(entity.getDotColor());
 
         return model;
 
@@ -24,6 +27,9 @@ public class StatusConverter {
 
         entity.setStatusID(model.getStatusID());
         entity.setName(model.getName());
+        entity.setDescrip(model.getDescrip());
+        entity.setBackgroundColor(model.getBackgroundColor());
+        entity.setDotColor(model.getDotColor());
 
         return entity;
 

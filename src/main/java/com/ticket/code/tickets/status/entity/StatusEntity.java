@@ -14,9 +14,14 @@ public class StatusEntity {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    /*@JsonIgnore
-    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
-    private List<TicketEntity> tickets = new ArrayList<>();*/
+    @Column(name = "descrip")
+    private String descrip;
+
+    @Column(name = "backgroundColor", length = 20)
+    private String backgroundColor;
+
+    @Column(name = "dotColor", length = 20)
+    private String dotColor;
 
     public Long getStatusID() {
         return statusID;
@@ -34,11 +39,27 @@ public class StatusEntity {
         this.name = name;
     }
 
-    /*public List<TicketEntity> getTickets() {
-        return tickets;
+    public String getDescrip() {
+        return descrip;
     }
 
-    public void setTickets(List<TicketEntity> tickets) {
-        this.tickets = tickets;
-    }*/
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public String getDotColor() {
+        return dotColor;
+    }
+
+    public void setDotColor(String dotColor) {
+        this.dotColor = dotColor;
+    }
 }
