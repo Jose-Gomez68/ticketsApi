@@ -73,7 +73,7 @@ public class TicketServiceJpa implements ITicketService {
 
     @Override
     public TicketModel save(TicketCreateModel ticket) {
-        System.out.println("=== INICIO CREACIÓN TICKET ===");
+        /*System.out.println("=== INICIO CREACIÓN TICKET ===");
         System.out.println("Título: " + ticket.getTitle());
         System.out.println("Kind: " + ticket.getKind());
         System.out.println("User: " + ticket.getUser());
@@ -81,16 +81,16 @@ public class TicketServiceJpa implements ITicketService {
         System.out.println("Project: " + ticket.getProject());
         System.out.println("AreaID: " + ticket.getAreaID());
         System.out.println("PriorityID: " + ticket.getPriorityID());
-        System.out.println("StatusID: " + ticket.getStatusID());
+        System.out.println("StatusID: " + ticket.getStatusID());*/
 
         TicketEntity entity = convertToEntity2(ticket);
-        System.out.println("=== ENTIDADES RELACIONADAS CARGADAS ===");
+        //System.out.println("=== ENTIDADES RELACIONADAS CARGADAS ===");
 
         TicketEntity ticketResult = rep.save(entity);
-        System.out.println("=== TICKET GUARDADO ===");
+        //System.out.println("=== TICKET GUARDADO ===");
 
         TicketModel result = convertToModel(ticketResult);
-        System.out.println("=== TICKET CONVERTIDO A MODELO ===");
+        //System.out.println("=== TICKET CONVERTIDO A MODELO ===");
         return result;
     }
 
