@@ -1,10 +1,13 @@
 package com.ticket.code.tickets.ticket.controller;
 
+import com.ticket.code.tickets.project.model.ProjectModel;
 import com.ticket.code.tickets.ticket.model.TicketCreateModel;
 import com.ticket.code.tickets.ticket.model.TicketModel;
 import com.ticket.code.tickets.ticket.service.ITicketService;
 import com.ticket.code.tickets.utils.modelsutils.ApiResponse;
+import com.ticket.code.tickets.utils.modelsutils.PaginationModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,15 +45,38 @@ public class TicketController {
     }
 
     @GetMapping("/getAllTicketActive")
-    public ResponseEntity<ApiResponse<List<TicketModel>>> getAllTicketActiveTrue() {//todos los tickets que no estan eliminados
+    public ResponseEntity<ApiResponse<PaginationModel<List<TicketModel>>>> getAllTicketActiveTruePage(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size
+    ) {//todos los tickets que no estan eliminados
 
-        List<TicketModel> list = serv.findByActiveTrue();
+        if (page < 0 || size < 1 || size > 100) {
+            ApiResponse<PaginationModel<List<TicketModel>>> response =
+                    new ApiResponse<>(
+                            false,
+                            "Los parámetros de paginación no son válidos",
+                            null
+                    );
+
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        Page<TicketModel> list = serv.findByActiveTruePage(page, size);
+
+        PaginationModel<List<TicketModel>> pagination =
+                new PaginationModel<>(
+                        list.getTotalElements(),
+                        list.getNumber(),
+                        list.getSize(),
+                        list.getContent()
+                );
 
         String message = list.isEmpty() ? "No se encontraron tickets" : "tickets encontrados.";
-        ApiResponse<List<TicketModel>> respose = new ApiResponse<>(
+        ApiResponse<PaginationModel<List<TicketModel>>> respose =
+                new ApiResponse<>(
                 true,
                 message,
-                list
+                pagination
         );
 
         return new ResponseEntity<>(respose, HttpStatus.OK);
@@ -141,7 +167,9 @@ public class TicketController {
 
             // obtener el ticket existente
             //TicketModel ticketToUpdate = existingTicket.get();
-
+            System.out.println("TICKET");
+            System.out.println(ticket);
+            System.out.println(ticket.getTicketID());
             // guardar cambios
             TicketModel  updatedTicket =
                     serv.update(ticket);
