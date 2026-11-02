@@ -28,14 +28,14 @@ public class AuthController {
             @RequestBody LoginRequest request) {
 
         try {
-            System.out.println("AUTH REQUEST: " + request.getEmail());
+            /*System.out.println("AUTH REQUEST: " + request.getEmail());
             System.out.println("AUTH REQUEST: " + request.getPassword());
             System.out.println(
                     new BCryptPasswordEncoder().encode("12345678")
-            );
+            );*/
             AuthResponse auth = authService.login(request);
 
-            System.out.println("AUTH RESPONSE: " + auth);
+            //System.out.println("AUTH RESPONSE: " + auth);
 
             return ResponseEntity.ok(
                     new ApiResponse<>(

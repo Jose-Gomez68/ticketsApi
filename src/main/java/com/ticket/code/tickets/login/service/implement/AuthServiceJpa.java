@@ -6,8 +6,6 @@ import com.ticket.code.tickets.login.service.IAuthService;
 import com.ticket.code.tickets.security.service.JwtService;
 import com.ticket.code.tickets.usuarios.entity.UserEntity;
 import com.ticket.code.tickets.usuarios.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -31,7 +29,7 @@ public class AuthServiceJpa implements IAuthService {
 
     public AuthResponse login(LoginRequest request) {
 
-        // 1. Validar credenciales con Spring Security
+        // 1.validar credenciales con spring security
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -39,27 +37,27 @@ public class AuthServiceJpa implements IAuthService {
                 )
         );
 
-        // 2. Obtener información del usuario
+        // 2.obtener información del usuario
         UserEntity user = userRepository
                 .findByEmailIgnoreCase(request.getEmail())
                 .orElseThrow(() ->
                         new RuntimeException("Usuario no encontrado")
                 );
 
-        // 3. Generar JWT
+        // 3.generar JWT
         String token = jwtService.generateToken(user.getEmail());
 
-        // 4. Obtener área
+        // 4.obtener área
         Long areaID = user.getArea() != null
                 ? user.getArea().getAreaID()
                 : null;
 
-        // 5. Construir respuesta
+        // respuesta
         return new AuthResponse(
                 token,
                 user.getUserID(),
                 user.getUserName(),
-                user.getName(),
+                user.getName()+" "+ user.getApPaterno()+" "+user.getApMaterno(),
                 user.getEmail(),
                 user.getRole().name(),
                 areaID
