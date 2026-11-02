@@ -118,13 +118,16 @@ public class UserServiceJpa implements IUserService {
     @Override
     public Optional<UserModel> findByEmailIgnoreCase(String email) {
 
-        UserEntity entity = rep.findByEmailIgnoreCase(email);
+        /*Optional<UserEntity> entity = rep.findByEmailIgnoreCase(email);
 
         if (entity == null) {
             return Optional.empty();
         }
 
-        return Optional.of(convertToModel(entity));
+        return Optional.of(convertToModel(entity));*/
+
+        return rep.findByEmailIgnoreCase(email)
+                .map(UserConverter::convertToModel);
 
     }
 
