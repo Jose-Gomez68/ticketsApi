@@ -82,6 +82,8 @@ public class TicketCommentController {
             @RequestBody TicketCommentModel ticket) {
         try {
 
+            System.out.println(ticket.getUser());
+            System.out.println(ticket.getUser());
             TicketCommentModel createdTicketComment = serv.save(ticket);
 
             ApiResponse<TicketCommentModel> response = new ApiResponse<>(

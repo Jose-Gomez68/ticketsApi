@@ -90,6 +90,7 @@ public class TicketCommentServiceJpa implements ITicketCommentService {
         entity.setTicket( ticket.findById(model.getTicket())
                 .orElseThrow(() ->
                         new RuntimeException("Ticket no encontrado")));
+        entity.setUser(model.getUser());
         entity.setCreatedDate(model.getCreatedDate());
         entity.setUpdatedDate(model.getUpdatedDate());
 

@@ -18,6 +18,7 @@ public class TicketCommentConverter {
         model.setTicket(
                 entity.getTicket() == null ? null : entity.getTicket().getTicketID()
         );
+        model.setUser(entity.getUser());
         model.setCreatedDate(entity.getCreatedDate());
         model.setUpdatedDate(entity.getUpdatedDate());
 
@@ -32,6 +33,7 @@ public class TicketCommentConverter {
         entity.setCommentID(model.getCommentID());
         entity.setMessage(model.getMessage());
         entity.setTicket(TicketConverter.convertToEntity(model.getTicket()));
+        entity.setUser(model.getUser());
         entity.setCreatedDate(model.getCreatedDate());
         entity.setUpdatedDate(model.getUpdatedDate());
 
