@@ -1,6 +1,5 @@
 package com.ticket.code.tickets.ticket.controller;
 
-import com.ticket.code.tickets.project.model.ProjectModel;
 import com.ticket.code.tickets.ticket.model.TicketCreateModel;
 import com.ticket.code.tickets.ticket.model.TicketModel;
 import com.ticket.code.tickets.ticket.service.ITicketService;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+//@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
 @RequestMapping("/api/ticket")
 public class TicketController {
 
