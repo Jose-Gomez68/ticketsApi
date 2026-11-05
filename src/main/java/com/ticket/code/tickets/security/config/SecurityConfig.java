@@ -3,7 +3,9 @@ package com.ticket.code.tickets.security.config;
 import com.ticket.code.tickets.security.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +32,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
-                .cors(cors -> {})
+                //.cors(cors -> {})
+                .cors(Customizer.withDefaults())//lee mi clase de CorsConfig // ahi esta la configuracion de que metodos usa mis controllers
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
@@ -39,13 +42,11 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-
-                        // Endpoints públicos
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(
-                                "/api/auth/login"
+                                "/api/auth/login",
+                                "/api/auth/refresh"
                         ).permitAll()
-
-                        // Todo lo demás requiere autenticación
                         .anyRequest().authenticated()
                 )
 

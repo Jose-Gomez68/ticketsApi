@@ -36,19 +36,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        final String authHeader =
-                request.getHeader("Authorization");
+        String token = extractToken(request);
 
-        if (authHeader == null ||
-                !authHeader.startsWith("Bearer ")) {
-
+        if (token == null) {
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
-
-            String token = authHeader.substring(7);
 
             String email = jwtService.extractUsername(token);
 
@@ -57,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             .getAuthentication() == null) {
 
                 UserDetails userDetails =
-                        userDetailsService.loadUserByUsername(email);// aqui pyede ser UserName o email
+                        userDetailsService.loadUserByUsername(email);
 
                 if (jwtService.isTokenValid(token, email)) {
 
@@ -84,6 +79,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private String extractToken(HttpServletRequest request) {
+
+        // 1.primero intenta con la cookie
+        if (request.getCookies() != null) {
+            for (jakarta.servlet.http.Cookie cookie : request.getCookies()) {
+                if ("accessToken".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+
+        // 2.fallback: header Authorization (útil para Postman o pruebas)
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
+
+        return null;
     }
 
 }
