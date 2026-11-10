@@ -10,6 +10,7 @@ import com.ticket.code.tickets.usuarios.repository.UserRepository;
 import com.ticket.code.tickets.usuarios.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,8 +31,8 @@ public class UserServiceJpa implements IUserService {
     @Autowired
     private AreaRepository areaRep;          // el repository de tu AreaEntity
 
-   /* @Autowired
-    private PasswordEncoder passwordEncoder;*/ // BCrypt (bean de Spring Security)
+    @Autowired
+    private PasswordEncoder passwordEncoder; // BCrypt (bean de Spring Security)
 
     @Override
     public List<UserModel> allUsers() {
@@ -48,7 +49,7 @@ public class UserServiceJpa implements IUserService {
 
         UserEntity entity = convertToEntity(user);
         entity.setUserID(null);                                   // asegura que sea INSERT
-        //entity.setPassword(passwordEncoder.encode(user.getPassword()));
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
         entity.setArea(resolveArea(user));
 
         UserEntity saved = rep.save(entity);
