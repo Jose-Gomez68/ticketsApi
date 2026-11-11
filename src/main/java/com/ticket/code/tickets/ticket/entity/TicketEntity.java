@@ -69,8 +69,7 @@ public class TicketEntity {
 
     @OneToMany(
             mappedBy = "ticket",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     @OrderBy("createdDate ASC")
     private List<TicketCommentEntity> comments = new ArrayList<>();
