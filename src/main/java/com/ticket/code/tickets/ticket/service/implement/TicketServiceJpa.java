@@ -3,7 +3,6 @@ package com.ticket.code.tickets.ticket.service.implement;
 import com.ticket.code.tickets.Priority.repository.PriorityRepository;
 import com.ticket.code.tickets.area.repository.AreaRepository;
 import com.ticket.code.tickets.kind.repository.KindRepository;
-import com.ticket.code.tickets.project.model.ProjectConverter;
 import com.ticket.code.tickets.project.repository.ProjectRepository;
 import com.ticket.code.tickets.status.repository.StatusRepository;
 import com.ticket.code.tickets.ticket.entity.TicketEntity;
@@ -21,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -191,6 +191,8 @@ public class TicketServiceJpa implements ITicketService {
                         .orElseThrow(() ->
                                 new RuntimeException("Estado no encontrado"))
         );
+
+        entity.setUpdatedDate(new Date());
 
         return entity;
     }
